@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs/internal/Subject';
-import { filter, flatMap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, mergeMap, takeUntil } from 'rxjs/operators';
 import { AlertsService } from '../../alerts/alerts.service';
 import { Web3Service } from '../../util/web3.service';
 import { ManifestationsContractService } from '../manifestations-contract.service';
@@ -27,7 +27,7 @@ export class ManifestationsListComponent implements OnInit, OnDestroy {
     this.authenticationService.getSelectedAccount()
       .pipe(takeUntil(this.ngUnsubscribe))
       .pipe(filter(account => account !== ''))
-      .pipe(flatMap((account: string) =>
+      .pipe(mergeMap((account: string) =>
         this.manifestationsContractService.listManifestEvents(account)))
       .subscribe(events => {
             this.manifestationEvents = events;

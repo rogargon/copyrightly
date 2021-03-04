@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs/internal/Subject';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Web3Service } from '../util/web3.service';
 import { AuthenticationService } from './authentication.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',

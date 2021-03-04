@@ -466,7 +466,7 @@ It also possible to test the Oraclize query online at: http://app.oraclize.it/ho
 
 For example: for the query: 
 
-    html(https://www.youtube.com/watch?v=ZwVNLDIJKVA).xpath(count(//div[contains(@id,'description')]//a[contains(@href,'QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8')]))
+    html(https://www.youtube.com/watch?v=ZwVNLDIJKVA).xpath(count(//meta[@name='description' and contains(@content,'QmPP8X2rWc2uanbnKpxfzEAAuHPuThQRtxpoY8CYVJxDj8')]))
 
 The result should be **1.0** because there is a link to the proper manifestation in the video description for 
 https://www.youtube.com/watch?v=ZwVNLDIJKVA

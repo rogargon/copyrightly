@@ -4,7 +4,7 @@ import { distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 import { ManifestationsContractService } from './manifestations/manifestations-contract.service';
 import { AlertsService } from './alerts/alerts.service';
 import { Web3Service } from './util/web3.service';
-import { Subject } from 'rxjs/internal/Subject';
+import { Subject } from 'rxjs';
 import { AuthenticationService } from './navbar/authentication.service';
 import { ManifestEventComponent } from './manifestations/manifest-event.component';
 import { YouTubeEvidencesContractService } from './evidences/youtube-evidences-contract.service';

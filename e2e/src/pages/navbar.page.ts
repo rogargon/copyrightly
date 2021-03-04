@@ -28,7 +28,7 @@ export class NavigationBar {
   }
 
   async getSelectedAccount(): Promise<string> {
-    return await this.accounts.getText();
+    return this.accounts.getText();
   }
 
   async setSelectedAccount(account: string) {

@@ -1,8 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
-import IPFS_API from 'ipfs-api';
 
+declare const require: any;
 declare const Buffer;
+
+const IPFSClient = require('ipfs-http-client');
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class IpfsService {
   private ipfsApi: any;
 
   constructor(private ngZone: NgZone) {
-    this.ipfsApi = IPFS_API('ipfs.infura.io', '5001', {protocol: 'https'});
+    this.ipfsApi = IPFSClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' });
   }
 
   public uploadFile (file, uploadToIpfs): Observable<string> {
@@ -39,8 +41,8 @@ export class IpfsService {
         const buffer = Buffer.from(reader.result);
         this.ipfsApi.add(buffer, {onlyHash: !uploadToIpfs, progress: (progress) => console.log(`Saved: ${progress}`)})
         .then((response) => {
-          console.log(`IPFS_ID: ${response[0].hash}`);
-          observer.next(response[0].hash);
+          console.log(`IPFS_ID: ${response.path}`);
+          observer.next(response.path);
           observer.complete();
         })
         .catch((err) => {
